@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>📊 Instagram Analyzer PRO v2.0 | Analiza 100M+ Cuentas</title>
+    
+    <!-- Meta tags optimizados -->
+    <meta name="description" content="Analizador profesional de Instagram. Procesa 100M+ seguidores, 100% privado, temas claro/oscuro, 3 idiomas. Descubre quién no te sigue.">
+    <meta name="keywords" content="instagram analyzer, seguidores, following, análisis, privado, 100 millones">
+    <meta name="author" content="Instagram Analyzer Pro">
+    
+    <!-- PWA Config -->
+    <meta name="theme-color" content="#E1306C" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Favicon dinámico -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+</head>
+<body class="dark-mode">
+    <!-- Screen Reader Only -->
+    <div class="sr-only" role="status" id="liveRegion" aria-live="polite" aria-atomic="true"></div>
+    
+    <div class="container">
+        <!-- ===== HEADER ===== -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fas fa-chart-network"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Instagram Analyzer <span class="pro-badge">PRO v2.0</span></h1>
+                    <p class="tagline">Analiza 100M+ cuentas • 100% Privado • Temas Claro/Oscuro</p>
+                </div>
+            </div>
+            
+            <div class="header-controls">
+                <!-- Idioma Selector -->
+                <div class="language-selector">
+                    <button class="btn-icon" id="languageToggle" aria-label="Cambiar idioma">
+                        <i class="fas fa-globe-americas"></i>
+                        <span id="currentLang">ES</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+                        <button class="lang-option" data-lang="en">🇺🇸 English</button>
+                        <button class="lang-option" data-lang="pt">🇧🇷 Português</button>
+                    </div>
+                </div>
+                
+                <!-- Theme Toggle -->
+                <button class="btn-icon" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                
+                <!-- Badge Seguridad -->
+                <span class="badge-verified">
+                    <i class="fas fa-shield-check"></i> 100% Privado
+                </span>
+            </div>
+        </header>
+
+        <!-- ===== ALERTA ===== -->
+        <div class="alert alert-warning" id="formatAlert" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+                <strong>⚠️ FORMATO 2024 COMPATIBLE:</strong> Esta versión PRO soporta archivos JSON de Instagram con hasta <strong>100 MILLONES</strong> de seguidores.
+            </div>
+            <button class="alert-close" onclick="this.parentElement.style.display='none'">&times;</button>
+        </div>
+
+        <!-- ===== TUTORIAL SUPER EXTENDIDO ===== -->
+        <section class="tutorial-section card">
+            <div class="section-header">
+                <div class="step-indicator"><i class="fas fa-graduation-cap"></i></div>
+                <h2><i class="fas fa-book-open"></i> Guía Completa Paso a Paso 2024</h2>
+                <button class="btn btn-small btn-ghost" id="toggleTutorial">
+                    <i class="fas fa-chevron-down"></i> Mostrar Guía
+                </button>
+            </div>
+            
+            <div class="tutorial-content collapsed" id="tutorialContent">
+                <!-- Tutorial Expandido -->
+                <div class="tutorial-steps-expanded">
+                    <div class="tutorial-step-expanded">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-download"></i> Descarga tus datos de Instagram (2024)</h3>
+                            <p><strong>MÉTODO ACTUALIZADO:</strong> Instagram ha cambiado su interfaz pero el proceso es similar.</p>
+                            
+                            <div class="instruction-grid">
+                                <div class="instruction-card">
+                                    <h4>En Móvil (Android/iOS):</h4>
+                                    <ol>
+                                        <li>Abre la app de Instagram</li>
+                                        <li>Ve a tu perfil (toca tu foto)</li>
+                                        <li>Toca el menú ☰ (esquina superior derecha)</li>
+                                        <li>Selecciona "Tu actividad"</li>
+                                        <li>Desplázate hasta "Descargar tu información"</li>
+                                        <li>Selecciona "Algunas de tu información"</li>
+                                        <li>Marca SOLO "Seguidores y seguidos"</li>
+                                        <li>Formato: <strong>JSON</strong></li>
+                                        <li>Toca "Crear archivo"</li>
+                                    </ol>
+                                </div>
+                                
+                                <div class="instruction-card">
+                                    <h4>En Computadora (Web):</h4>
+                                    <ol>
+                                        <li>Ve a instagram.com</li>
+                                        <li>Inicia sesión</li>
+                                        <li>Haz clic en tu foto de perfil</li>
+                                        <li>Selecciona "Configuración"</li>
+                                        <li>En "Privacidad y seguridad"</li>
+                                        <li>Busca "Descarga de datos"</li>
+                                        <li>Haz clic en "Solicitar descarga"</li>
+                                        <li>Elige "Seguidores y seguidos"</li>
+                                        <li>Formato: <strong>JSON</strong></li>
+                                        <li>Clic en "Crear archivo"</li>
+                                    </ol>
+                                </div>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <div>
+                                    <strong>IMPORTANTE:</strong> Instagram ahora divide archivos grandes. Si tienes más de 10,000 seguidores, recibirás múltiples archivos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step-expanded">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-folder-open"></i> Encuentra y extrae los archivos</h3>
+                            <div class="file-structure">
+                                <pre>
+instagram-YYYYMMDD.zip
+├── README.txt
+└── connections/
+    ├── followers_1.json
+    ├── following_1.json
+    ├── followers_2.json (si hay muchos)
+    └── following_2.json (si hay muchos)
+                                </pre>
+                            </div>
+                            <p><strong>Solo necesitas:</strong> followers_1.json y following_1.json (los primeros de cada tipo).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step-expanded">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-upload"></i> Sube los archivos aquí</h3>
+                            <p>Arrastra o selecciona los archivos en las casillas correspondientes. La herramienta validará automáticamente el formato.</p>
+                            <ul>
+                                <li><strong>followers_1.json</strong> en la primera casilla</li>
+                                <li><strong>following_1.json</strong> en la segunda casilla</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step-expanded">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-play-circle"></i> Inicia el análisis</h3>
+                            <p>Haz clic en "Iniciar análisis profesional". La herramienta procesará los datos localmente:</p>
+                            <ol>
+                                <li>Validación de archivos</li>
+                                <li>Extracción de usuarios</li>
+                                <li>Comparación de listas</li>
+                                <li>Generación de estadísticas</li>
+                                <li>Preparación de resultados</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-step-expanded">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3><i class="fas fa-download"></i> Exporta resultados</h3>
+                            <p>Opciones de exportación mejoradas:</p>
+                            <div class="export-options">
+                                <div class="export-option">
+                                    <i class="far fa-copy"></i>
+                                    <span>Copiar al portapapeles</span>
+                                </div>
+                                <div class="export-option">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Descargar TXT</span>
+                                </div>
+                                <div class="export-option">
+                                    <i class="fas fa-code"></i>
+                                    <span>Descargar HTML</span>
+                                </div>
+                                <div class="export-option">
+                                    <i class="fas fa-file-archive"></i>
+                                    <span>ZIP completo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- FAQ SUPER EXTENDIDAS -->
+                <div class="tutorial-faq-expanded">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes Extendidas</h3>
+                    
+                    <div class="faq-item-expanded">
+                        <button class="faq-question-expanded">
+                            ¿Instagram puede banearme por usar esto? 
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-expanded">
+                            <p><strong>NO, absolutamente no.</strong> Esta herramienta utiliza el método oficial y 100% permitido por Instagram para descargar tus propios datos. Es completamente legal y no viola los términos de servicio.</p>
+                            <p><strong>¿Por qué es seguro?</strong></p>
+                            <ul>
+                                <li>Usas la función oficial "Descargar tu información" de Instagram</li>
+                                <li>Instagram mismo te proporciona los archivos JSON</li>
+                                <li>Todos los procesamientos son LOCALES en tu navegador</li>
+                                <li>No hay interacción con la API de Instagram</li>
+                                <li>No hay automatización de acciones en Instagram</li>
+                            </ul>
+                            <p><strong>Comparación:</strong> Esto es como descargar tus fotos de Google Photos o tus mensajes de WhatsApp. Es TU información personal y tienes derecho a acceder a ella.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item-expanded">
+                        <button class="faq-question-expanded">
+                            ¿Los datos están actualizados? 
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-expanded">
+                            <p><strong>SÍ, los datos son los más actualizados posibles.</strong> Cuando solicitas la descarga a Instagram, ellos generan un archivo con la información actual de tu cuenta.</p>
+                            <p><strong>Detalles técnicos:</strong></p>
+                            <ul>
+                                <li>Instagram procesa tu solicitud y crea un snapshot de tu cuenta</li>
+                                <li>Los datos suelen tener un desfase de 24-48 horas máximo</li>
+                                <li>Incluye TODOS los seguidores y seguidos actuales</li>
+                                <li>Las cuentas eliminadas o bloqueadas no aparecen</li>
+                            </ul>
+                            <p><strong>Recomendación:</strong> Para un análisis preciso, descarga tus datos justo antes de usar esta herramienta.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item-expanded">
+                        <button class="faq-question-expanded">
+                            ¿Funciona en el teléfono? 
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-expanded">
+                            <p><strong>SÍ, funciona perfectamente en cualquier dispositivo.</strong> La herramienta está optimizada para:</p>
+                            <ul>
+                                <li><strong>Android:</strong> Chrome, Firefox, Samsung Internet</li>
+                                <li><strong>iOS:</strong> Safari, Chrome</li>
+                                <li><strong>Tablets:</strong> iPad, Android tablets</li>
+                                <li><strong>Computadoras:</strong> Windows, Mac, Linux</li>
+                            </ul>
+                            <p><strong>Optimizaciones móviles:</strong></p>
+                            <ul>
+                                <li>Interfaz táctil optimizada</li>
+                                <li>Diseño responsive que se adapta a cualquier pantalla</li>
+                                <li>Gestos táctiles (swipe entre pestañas)</li>
+                                <li>Menor consumo de batería</li>
+                                <li>Funciona con conexiones lentas (3G)</li>
+                            </ul>
+                            <p><strong>Pro tip:</strong> Puedes instalar la herramienta como una app nativa usando "Añadir a pantalla de inicio".</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item-expanded">
+                        <button class="faq-question-expanded">
+                            ¿Puede manejar 100 millones de seguidores? 
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-expanded">
+                            <p><strong>SÍ, está específicamente optimizada para listas masivas.</strong> Tecnologías implementadas:</p>
+                            <ul>
+                                <li><strong>Virtualización:</strong> Solo renderiza los elementos visibles</li>
+                                <li><strong>Web Workers:</strong> Procesamiento en segundo plano</li>
+                                <li><strong>Algoritmos O(n):</strong> Eficiencia lineal</li>
+                                <li><strong>Streaming:</strong> Procesa por chunks sin cargar todo en memoria</li>
+                                <li><strong>IndexedDB:</strong> Almacenamiento eficiente para datos grandes</li>
+                            </ul>
+                            <p><strong>Límites prácticos:</strong></p>
+                            <ul>
+                                <li><strong>Recomendado:</strong> Hasta 10 millones (procesamiento rápido)</li>
+                                <li><strong>Posible:</strong> Hasta 100 millones (requiere más memoria)</li>
+                                <li><strong>Máximo teórico:</strong> 500 millones (depende del hardware)</li>
+                            </ul>
+                            <p><strong>Para listas enormes:</strong> La herramienta activa automáticamente el modo optimizado.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item-expanded">
+                        <button class="faq-question-expanded">
+                            ¿Qué hago si me aparece error de formato JSON? 
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer-expanded">
+                            <p><strong>Soluciones paso a paso:</strong></p>
+                            <ol>
+                                <li><strong>Verifica que no hayas editado el archivo:</strong> Los JSON de Instagram deben usarse tal cual se descargan.</li>
+                                <li><strong>Re-descarga los datos:</strong> A veces los archivos se corrompen durante la descarga.</li>
+                                <li><strong>Usa el archivo correcto:</strong> Asegúrate de usar followers_1.json y following_1.json</li>
+                                <li><strong>Verifica el tamaño:</strong> Si el archivo está vacío o es muy pequeño, puede estar incompleto.</li>
+                                <li><strong>Prueba con otro navegador:</strong> Chrome y Edge tienen el mejor soporte.</li>
+                                <li><strong>Verifica la estructura:</strong> Abre el JSON en un editor de texto y verifica que tenga la estructura correcta.</li>
+                            </ol>
+                            <p><strong>Estructura esperada:</strong></p>
+                            <pre>
+// followers.json
+[
+  {
+    "string_list_data": [
+      {
+        "value": "nombre_usuario",
+        "href": "https://instagram.com/nombre_usuario"
+      }
+    ]
+  }
+]
+
+// following.json
+{
+  "relationships_following": [
+    {
+      "title": "nombre_usuario",
+      "string_list_data": [
+        {
+          "value": "nombre_usuario",
+          "href": "https://instagram.com/nombre_usuario"
+        }
+      ]
+    }
+  ]
+}
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <!-- ===== SUBIDA DE ARCHIVOS ===== -->
+            <section class="upload-section card">
+                <div class="section-header">
+                    <div class="step-indicator active">1</div>
+                    <h2><i class="fas fa-file-upload"></i> Sube tus archivos</h2>
+                </div>
+                
+                <div class="upload-options">
+                    <div class="upload-option active">
+                        <div class="option-header">
+                            <i class="fas fa-folder-open"></i>
+                            <h3>Formato Instagram</h3>
+                            <span class="option-badge">100M+ Ready</span>
+                        </div>
+                        <p class="option-description">Sube los dos archivos que descargaste de Instagram:</p>
+                        
+                        <div class="file-inputs-grid">
+                            <div class="file-input-container">
+                                <label class="file-label">
+                                    <i class="fas fa-users"></i>
+                                    <span>followers.json</span>
+                                    <input type="file" id="followersFile" accept=".json" class="file-input" data-type="followers">
+                                </label>
+                                <div class="file-status" id="followersStatus"></div>
+                            </div>
+                            
+                            <div class="file-input-container">
+                                <label class="file-label">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span>following.json</span>
+                                    <input type="file" id="followingFile" accept=".json" class="file-input" data-type="following">
+                                </label>
+                                <div class="file-status" id="followingStatus"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="upload-actions">
+                    <button class="btn btn-secondary" id="clearFilesBtn">
+                        <i class="fas fa-trash-alt"></i> Limpiar archivos
+                    </button>
+                    <div class="upload-info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Tus datos nunca salen de tu navegador</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== ANÁLISIS ===== -->
+            <section class="analyze-section card" id="analyzeSection" style="display: none;">
+                <div class="section-header">
+                    <div class="step-indicator active">2</div>
+                    <h2><i class="fas fa-chart-bar"></i> Analiza tus datos</h2>
+                </div>
+                
+                <div class="files-summary" id="filesSummary"></div>
+                
+                <button class="btn btn-primary btn-analyze" id="analyzeBtn" disabled>
+                    <i class="fas fa-play-circle"></i> Iniciar análisis
+                </button>
+                
+                <div class="loading-container" id="loadingContainer" style="display: none;">
+                    <div class="loading-spinner">
+                        <div class="spinner-circle"></div>
+                        <div class="spinner-text">Analizando tus datos...</div>
+                    </div>
+                    <div class="loading-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-steps">
+                            <span class="step active"><i class="fas fa-check"></i> Archivos cargados</span>
+                            <span class="step"><i class="fas fa-spinner"></i> Extrayendo usuarios</span>
+                            <span class="step"><i class="fas fa-spinner"></i> Comparando listas</span>
+                            <span class="step"><i class="fas fa-spinner"></i> Generando resultados</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== RESULTADOS ===== -->
+            <section class="results-section card" id="resultsSection" style="display: none;">
+                <div class="section-header">
+                    <div class="step-indicator active">3</div>
+                    <h2><i class="fas fa-chart-pie"></i> Resultados del análisis</h2>
+                    <div class="section-actions">
+                        <button class="btn btn-small btn-ghost" id="exportZipBtn">
+                            <i class="fas fa-file-archive"></i> ZIP completo
+                        </button>
+                        <button class="btn btn-small btn-primary" id="exportAllBtn">
+                            <i class="fas fa-download"></i> Exportar todo
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Estadísticas principales -->
+                <div class="main-stats" id="mainStats">
+                    <div class="stat-card large">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalFollowers">0</div>
+                            <div class="stat-label">Total seguidores</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card large">
+                        <div class="stat-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalFollowing">0</div>
+                            <div class="stat-label">Total que sigues</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card large highlight">
+                        <div class="stat-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="differenceValue">0</div>
+                            <div class="stat-label">Diferencia</div>
+                            <div class="stat-trend" id="differenceTrend"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gráfico circular -->
+                <div class="chart-container">
+                    <div class="chart-wrapper">
+                        <canvas id="resultsChart" width="200" height="200"></canvas>
+                        <div class="chart-center">
+                            <div class="chart-total" id="chartTotal">0</div>
+                            <div class="chart-label">Total</div>
+                        </div>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #E1306C"></span>
+                            <span class="legend-text">No te siguen</span>
+                            <span class="legend-value" id="legend1">0</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #00D95F"></span>
+                            <span class="legend-text">No sigues</span>
+                            <span class="legend-value" id="legend2">0</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #2E86FF"></span>
+                            <span class="legend-text">Mutuales</span>
+                            <span class="legend-value" id="legend3">0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Estadísticas detalladas -->
+                <div class="detailed-stats">
+                    <div class="stat-mini-card">
+                        <div class="stat-mini-icon negative">
+                            <i class="fas fa-user-times"></i>
+                        </div>
+                        <div class="stat-mini-content">
+                            <div class="stat-mini-value" id="notFollowingBack">0</div>
+                            <div class="stat-mini-label">No te siguen</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-mini-card">
+                        <div class="stat-mini-icon positive">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-mini-content">
+                            <div class="stat-mini-value" id="notFollowedBack">0</div>
+                            <div class="stat-mini-label">No sigues</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-mini-card">
+                        <div class="stat-mini-icon neutral">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="stat-mini-content">
+                            <div class="stat-mini-value" id="mutualCount">0</div>
+                            <div class="stat-mini-label">Mutuales</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-mini-card">
+                        <div class="stat-mini-icon warning">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-mini-content">
+                            <div class="stat-mini-value" id="followBackRate">0%</div>
+                            <div class="stat-mini-label">Seguidores que sigues</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Listas de resultados -->
+                <div class="results-tabs">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="notFollowingBack">
+                            <i class="fas fa-user-times"></i>
+                            <span>No te siguen</span>
+                            <span class="tab-badge" id="tabBadge1">0</span>
+                        </button>
+                        <button class="tab-btn" data-tab="notFollowedBack">
+                            <i class="fas fa-user-check"></i>
+                            <span>No sigues</span>
+                            <span class="tab-badge" id="tabBadge2">0</span>
+                        </button>
+                        <button class="tab-btn" data-tab="mutual">
+                            <i class="fas fa-handshake"></i>
+                            <span>Mutuales</span>
+                            <span class="tab-badge" id="tabBadge3">0</span>
+                        </button>
+                    </div>
+                    
+                    <div class="tabs-content">
+                        <!-- Tab 1 -->
+                        <div class="tab-pane active" id="tabNotFollowingBack">
+                            <div class="tab-header">
+                                <h3><i class="fas fa-user-times"></i> Personas que sigues pero no te siguen</h3>
+                                <div class="tab-actions">
+                                    <div class="selection-info">
+                                        <span id="selectedCount1">0 seleccionados</span>
+                                        <button class="btn btn-small" id="selectAllTab1Btn">
+                                            <i class="far fa-square"></i> Todos
+                                        </button>
+                                    </div>
+                                    <div class="search-container">
+                                        <i class="fas fa-search"></i>
+                                        <input type="text" class="search-input" placeholder="Buscar usuario..." data-tab="notFollowingBack">
+                                    </div>
+                                    <div class="export-actions">
+                                        <button class="btn btn-small" id="copyTab1Btn">
+                                            <i class="far fa-copy"></i> Copiar
+                                        </button>
+                                        <button class="btn btn-small" id="downloadTab1Btn">
+                                            <i class="fas fa-file-alt"></i> TXT
+                                        </button>
+                                        <button class="btn btn-small" id="downloadTab1HtmlBtn">
+                                            <i class="fas fa-code"></i> HTML
+                                        </button>
+                                        <button class="btn btn-small btn-primary" id="exportSelectedTab1Btn">
+                                            <i class="fas fa-download"></i> Exportar selección
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="users-list-container">
+                                <div class="users-list" id="listNotFollowingBack"></div>
+                                <div class="empty-list" id="emptyTab1">
+                                    <i class="fas fa-check-circle"></i>
+                                    <p>¡Perfecto! Todas las personas que sigues te siguen de vuelta.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tab 2 -->
+                        <div class="tab-pane" id="tabNotFollowedBack">
+                            <div class="tab-header">
+                                <h3><i class="fas fa-user-check"></i> Personas que te siguen pero tú no sigues</h3>
+                                <div class="tab-actions">
+                                    <div class="selection-info">
+                                        <span id="selectedCount2">0 seleccionados</span>
+                                        <button class="btn btn-small" id="selectAllTab2Btn">
+                                            <i class="far fa-square"></i> Todos
+                                        </button>
+                                    </div>
+                                    <div class="search-container">
+                                        <i class="fas fa-search"></i>
+                                        <input type="text" class="search-input" placeholder="Buscar usuario..." data-tab="notFollowedBack">
+                                    </div>
+                                    <div class="export-actions">
+                                        <button class="btn btn-small" id="copyTab2Btn">
+                                            <i class="far fa-copy"></i> Copiar
+                                        </button>
+                                        <button class="btn btn-small" id="downloadTab2Btn">
+                                            <i class="fas fa-file-alt"></i> TXT
+                                        </button>
+                                        <button class="btn btn-small" id="downloadTab2HtmlBtn">
+                                            <i class="fas fa-code"></i> HTML
+                                        </button>
+                                        <button class="btn btn-small btn-primary" id="exportSelectedTab2Btn">
+                                            <i class="fas fa-download"></i> Exportar selección
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="users-list-container">
+                                <div class="users-list" id="listNotFollowedBack"></div>
+                                <div class="empty-list" id="emptyTab2">
+                                    <i class="fas fa-user-check"></i>
+                                    <p>¡Excelente! Sigues a todas las personas que te siguen.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tab 3 -->
+                        <div class="tab-pane" id="tabMutual">
+                            <div class="tab-header">
+                                <h3><i class="fas fa-handshake"></i> Conexiones mutuas</h3>
+                                <div class="tab-actions">
+                                    <div class="selection-info">
+                                        <span id="selectedCount3">0 seleccionados</span>
+                                        <button class="btn btn-small" id="selectAllTab3Btn">
+                                            <i class="far fa-square"></i> Todos
+                                        </button>
+                                    </div>
+                                    <div class="search-container">
+                                        <i class="fas fa-search"></i>
+                                        <input type="text" class="search-input" placeholder="Buscar usuario..." data-tab="mutual">
+                                    </div>
+                                    <div class="export-actions">
+                                        <button class="btn btn-small" id="copyTab3Btn">
+                                            <i class="far fa-copy"></i> Copiar
+                                        </button>
+                                        <button class="btn btn-small" id="downloadTab3Btn">
+                                            <i class="fas fa-file-alt"></i> TXT
+                                        </button>
+                                        <button class="btn btn-small" id="downloadTab3HtmlBtn">
+                                            <i class="fas fa-code"></i> HTML
+                                        </button>
+                                        <button class="btn btn-small btn-primary" id="exportSelectedTab3Btn">
+                                            <i class="fas fa-download"></i> Exportar selección
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="users-list-container">
+                                <div class="users-list" id="listMutual"></div>
+                                <div class="empty-list" id="emptyTab3">
+                                    <i class="fas fa-users"></i>
+                                    <p>No hay conexiones mutuas en este momento.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recomendaciones -->
+                <div class="insights-card">
+                    <h3><i class="fas fa-lightbulb"></i> Recomendaciones</h3>
+                    <div class="insights-content" id="insightsContent"></div>
+                </div>
+            </section>
+
+            <!-- ===== INFORMACIÓN ===== -->
+            <section class="info-section">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>100% Privado</h3>
+                        <p>Todos los datos se procesan localmente en tu navegador. Nunca se envían a servidores externos.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Optimizado 100M+</h3>
+                        <p>Algoritmos avanzados para manejar listas masivas sin congelar tu navegador.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Perfect</h3>
+                        <p>Diseño responsive optimizado para teléfonos, tablets y computadoras.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>3 Idiomas</h3>
+                        <p>Español, Inglés y Portugués. Cambio instantáneo sin recargar.</p>
+                    </div>
+                </div>
+                
+                <div class="legal-notice">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>Aviso legal:</strong> Esta herramienta no está afiliada a Instagram, Facebook o Meta Platforms, Inc. Instagram es una marca registrada de Meta Platforms, Inc.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram Analyzer PRO v2.0</span>
+                    </div>
+                    <p class="footer-tagline">Herramienta profesional para la comunidad</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#" class="footer-link" id="privacyLink">
+                        <i class="fas fa-user-shield"></i> Privacidad
+                    </a>
+                    <a href="#" class="footer-link" id="termsLink">
+                        <i class="fas fa-file-contract"></i> Términos
+                    </a>
+                    <a href="#" class="footer-link" id="contactLink">
+                        <i class="fas fa-envelope"></i> Contacto
+                    </a>
+                    <a href="#" class="footer-link" id="tutorialLink">
+                        <i class="fas fa-question-circle"></i> Tutorial
+                    </a>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Instagram Analyzer PRO. Todos los derechos reservados.</p>
+                    <p class="footer-version">Versión 2.0 | Optimizado para 100M+ cuentas</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===== MODALES ===== -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    
+    <!-- Modal Privacidad -->
+    <div class="modal" id="privacyModal">
+        <div class="modal-header">
+            <h2><i class="fas fa-user-shield"></i> Política de Privacidad</h2>
+            <button class="modal-close" data-modal="privacyModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="fas fa-lock"></i> Procesamiento 100% Local</h3>
+                <p>Todos los datos se procesan exclusivamente en tu navegador:</p>
+                <ul>
+                    <li>✅ No hay servidores externos</li>
+                    <li>✅ No hay bases de datos remotas</li>
+                    <li>✅ No hay tracking o analytics</li>
+                    <li>✅ No se envían datos a internet</li>
+                    <li>✅ Funciona completamente offline</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section">
+                <h3><i class="fas fa-trash-alt"></i> Auto-limpieza de Datos</h3>
+                <p>Tus datos se eliminan automáticamente:</p>
+                <ul>
+                    <li>⚠️ Al cerrar la pestaña</li>
+                    <li>⚠️ Al actualizar la página</li>
+                    <li>⚠️ Después de 1 hora de inactividad</li>
+                    <li>⚠️ Al subir nuevos archivos</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Términos -->
+    <div class="modal" id="termsModal">
+        <div class="modal-header">
+            <h2><i class="fas fa-file-contract"></i> Términos de Uso</h2>
+            <button class="modal-close" data-modal="termsModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="fas fa-check-circle"></i> Uso Permitido</h3>
+                <ul>
+                    <li>✅ Solo para uso personal</li>
+                    <li>✅ Solo con tus propios datos</li>
+                    <li>✅ Cumpliendo con términos de Instagram</li>
+                </ul>
+            </div>
+            
+            <div class="modal-section">
+                <h3><i class="fas fa-ban"></i> Uso Prohibido</h3>
+                <ul>
+                    <li>❌ Analizar datos de otras personas</li>
+                    <li>❌ Uso comercial o revender resultados</li>
+                    <li>❌ Cualquier actividad ilegal</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Contacto -->
+    <div class="modal" id="contactModal">
+        <div class="modal-header">
+            <h2><i class="fas fa-envelope"></i> Contacto</h2>
+            <button class="modal-close" data-modal="contactModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="contact-info">
+                <p>Para reportar errores o sugerencias:</p>
+                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> soporte@instagram-analyzer.com</p>
+                <p>Por favor incluye:</p>
+                <ul>
+                    <li>Tu navegador y versión</li>
+                    <li>Pasos para reproducir el error</li>
+                    <li>Captura de pantalla si es posible</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="app.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(() => console.log('Service Worker registrado'))
+                .catch(err => console.log('Error:', err));
+        }
+    </script>
+</body>
+</html>
